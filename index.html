@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Hangman</title>
+    <title>Psychic Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script
@@ -40,32 +40,31 @@
     var lives = 9
     var guesses = []
     
-    $(document).keydown(function(event) {
-        var userGuess = event.key;
-        guesses.push(userGuess)
-        $("#guesses").append(userGuess + ", ")
-            console.log(guesses)
-            if (userGuess === computerGuess) {
-                wins++
-                lives = 9
-                guesses = []
-                computerGuess = letters[Math.floor(Math.random() * letters.length)]
-            }
-            else {
-                lives--
-                if (lives === 0) {
-                    losses++
+        $(document).keydown(function (event) {
+            var userGuess = event.key;
+            guesses.push(userGuess)
+            $("#guesses").append(userGuess + ", ")
+                console.log(guesses)
+                if (userGuess === computerGuess) {
+                    wins++
                     lives = 9
                     guesses = []
                     computerGuess = letters[Math.floor(Math.random() * letters.length)]
                 }
-            }
-
+                else {
+                    lives--
+                    if (lives === 0) {
+                        losses++
+                        lives = 9
+                        guesses = []
+                        computerGuess = letters[Math.floor(Math.random() * letters.length)]
+                    }
+                }
         $("#wins").html("Wins: " + wins)
         $("#losses").html("Losses: " + losses)
         $("#lives").html("Lives: " + lives)
         $("#guesses").html("Guesses: " + guesses)
-    });
+        });
 </script>
 </body>
 </html>
